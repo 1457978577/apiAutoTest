@@ -13,7 +13,7 @@ import requests
 
 class BaseRequest(object):
     def __init__(self):
-        pass
+        self.session = requests.Session()
 
     # 请求
     def base_requests(self, method, url, parametric_key=None, data=None, file_var=None, file_path=None, header=None):
@@ -31,7 +31,7 @@ class BaseRequest(object):
         :param header: 请求头
         :return: 返回json格式的响应
         """
-        session = requests.Session()
+        session = self.session
         if (file_var in [None, '']) and (file_path in [None, '']):
             files = None
         else:
